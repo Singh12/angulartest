@@ -1,16 +1,30 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { Routes, RouterModule } from '@angular/router';
+import {APP_BASE_HREF} from '@angular/common'
+import { ContactComponent } from './contact/contact.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserModule } from '@angular/platform-browser';
 
 describe('AppComponent', () => {
+  const routes: Routes = [
+    {
+    component: ContactComponent, path: 'contact'
+  }];
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule
+        RouterTestingModule,
+        BrowserModule,
+        ReactiveFormsModule,
+        RouterModule.forRoot(routes)
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        ContactComponent,
       ],
+      providers: [{provide: APP_BASE_HREF, useValue: '/'}]
     }).compileComponents();
   }));
 
